@@ -23,7 +23,6 @@
 #include <linux/mm.h>
 #include <linux/proc_fs.h>
 #include <linux/profile.h>
-#include <linux/rtmutex.h>
 #include <linux/sched/cputime.h>
 #include <linux/seq_file.h>
 #include <linux/slab.h>
