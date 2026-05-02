@@ -4643,6 +4643,7 @@ static const struct bpf_func_proto bpf_xdp_event_output_proto = {
 };
 
 BTF_ID_LIST_SINGLE(bpf_xdp_output_btf_ids, struct, xdp_buff)
+static struct xdp_buff *__used __maybe_unused bpf_xdp_output_btf_type;
 
 const struct bpf_func_proto bpf_xdp_output_proto = {
 	.func		= bpf_xdp_event_output,
