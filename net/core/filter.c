@@ -4642,7 +4642,7 @@ static const struct bpf_func_proto bpf_xdp_event_output_proto = {
 	.arg5_type	= ARG_CONST_SIZE_OR_ZERO,
 };
 
-BTF_ID_LIST_SINGLE(bpf_xdp_output_btf_ids, struct, xdp_buff)
+static u32 bpf_xdp_output_btf_ids[1];
 
 const struct bpf_func_proto bpf_xdp_output_proto = {
 	.func		= bpf_xdp_event_output,
@@ -10529,9 +10529,10 @@ const struct bpf_func_proto bpf_skc_to_tcp_request_sock_proto = {
 
 BPF_CALL_1(bpf_skc_to_udp6_sock, struct sock *, sk)
 {
-	/* udp6_sock type is not generated in dwarf and hence btf,
+	/* udp_sock/udp6_sock types are not generated in dwarf and hence btf,
 	 * trigger an explicit type generation here.
 	 */
+	BTF_TYPE_EMIT(struct udp_sock);
 	BTF_TYPE_EMIT(struct udp6_sock);
 	if (sk && sk_fullsock(sk) && sk->sk_protocol == IPPROTO_UDP &&
 	    sk->sk_type == SOCK_DGRAM && sk->sk_family == AF_INET6)
